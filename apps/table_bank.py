@@ -5,8 +5,7 @@ from dash import dash_table
 
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
-# df = pd.read_csv(DATA_PATH.joinpath("excel_dash.csv"))
-df = pd.read_csv("https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Dash%20Components/Dropdown/Urban_Park_Ranger_Animal_Condition.csv")
+df = pd.read_csv(DATA_PATH.joinpath("bank.csv"))
 
 # df = df.head(100)
 

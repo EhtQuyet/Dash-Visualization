@@ -8,11 +8,11 @@ from dash.dependencies import Input, Output
 # Connect to main app.py file
 from app import app
 # Connect to your app pages
-from apps import practice, data_table
+from apps import bar_genre, data_table, table_bank, bar_bank, bank_dropdown_pie_chart
+from apps import  customer_segmentation, rfm
 
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("datasets").resolve()
-df = pd.read_csv(DATA_PATH.joinpath("iranian_students.csv"))
 
 # styling the sidebar
 SIDEBAR_STYLE = {
@@ -36,13 +36,13 @@ sidebar = html.Div(
     [
         html.H2("Sidebar", className="display-4"),
         html.Hr(),
-        html.P(
-            "Number of students per education level", className="lead"
-        ),
         dbc.Nav(
             [
-                dbc.NavLink("Graph Analysis", href="/", active="exact"),
-                dbc.NavLink("Data Table", href="/data-table", active="exact"),
+                dbc.NavLink("Genre Data", href="/", active="exact"),
+                dbc.NavLink("Bank Data", href="/table-bank", active="exact"),
+                dbc.NavLink("Bar Chart Genre", href="/graph-analysis-genre", active="exact"),
+                dbc.NavLink("Bar Chart Bank", href="/graph-analysis-bank", active="exact"),
+                dbc.NavLink("Pie Chart Bank", href="/pie-chart-bank", active="exact"),
                 dbc.NavLink("Page 2", href="/page-2", active="exact"),
             ],
             vertical=True,
@@ -65,9 +65,15 @@ app.layout = html.Div([
               [Input('url', 'pathname')])
 def render_page_content(pathname):
     if pathname == "/":
-        return practice.layout
-    elif pathname == "/data-table":
-        return data_table.layout
+        return customer_segmentation.layout
+    elif pathname == "/table-bank":
+        return table_bank.layout
+    elif pathname == "/graph-analysis-genre":
+        return bar_genre.layout
+    elif pathname == "/graph-analysis-bank":
+        return bar_bank.layout
+    elif pathname == "/pie-chart-bank":
+        return bank_dropdown_pie_chart.layout
     elif pathname == "/page-2":
         "404 Page Error! Please choose a link"
     # If the user tries to reach a different page, return a 404 message
